@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- nuget package properties -->
+    <PackageId>Vinder.Internal.Essentials</PackageId>
+    <Authors>Vinder</Authors>
+    <Company>Vinder</Company>
+    <Product>Vinder.Internal.Essentials</Product>
+    <Description>Shared core package for Vinder projects, containing essential abstractions, patterns, and utilities.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
