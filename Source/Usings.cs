@@ -10,3 +10,4 @@ global using System.Globalization;
 
 global using Vinder.Internal.Essentials.Entities;
 global using Vinder.Internal.Essentials.Contracts;
+global using Vinder.Internal.Essentials.Filters;
