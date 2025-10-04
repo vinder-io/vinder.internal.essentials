@@ -1,6 +1,6 @@
 namespace Vinder.Internal.Essentials.Filters;
 
-public class PaginationFilters
+public sealed record PaginationFilters
 {
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 20;
