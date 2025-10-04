@@ -18,25 +18,21 @@ public abstract class FiltersBuilderBase<TFilters, TBuilder>
         return (TBuilder)this;
     }
 
-    public TBuilder WithPagination(int? pageNumber = null, int? pageSize = null)
+    public TBuilder WithPagination(PaginationFilters? pagination)
     {
-        if (pageNumber.HasValue || pageSize.HasValue)
+        if (pagination is not null)
         {
-            _filters.Pagination = new PaginationFilters
-            {
-                PageNumber = pageNumber ?? 1,
-                PageSize = pageSize ?? 20
-            };
+            _filters.Pagination = pagination;
         }
 
         return (TBuilder)this;
     }
 
-    public TBuilder WithSort(string? fieldName, SortDirection? direction = null)
+    public TBuilder WithSort(SortFilters? sort)
     {
-        if (!string.IsNullOrWhiteSpace(fieldName) && direction.HasValue)
+        if (sort is not null)
         {
-            _filters.Sort = SortFilters.From(fieldName, direction.Value);
+            _filters.Sort = sort;
         }
 
         return (TBuilder)this;
