@@ -20,4 +20,10 @@ public sealed class ActivityFiltersBuilder :
         _filters.TenantId = tenantId;
         return this;
     }
+
+    public ActivityFiltersBuilder WithResource(string? resourceId)
+    {
+        _filters.ResourceId = resourceId;
+        return this;
+    }
 }
