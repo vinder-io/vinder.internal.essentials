@@ -11,3 +11,5 @@ global using System.Globalization;
 global using Vinder.Internal.Essentials.Entities;
 global using Vinder.Internal.Essentials.Contracts;
 global using Vinder.Internal.Essentials.Filters;
+global using Vinder.Internal.Essentials.Filters.Builders;
+global using Vinder.Internal.Essentials.Primitives;
