@@ -15,6 +15,56 @@ public static class Identifier
     public static string Generate(string prefix, int randomPartLength = 25)
         => $"{prefix.ToLowerInvariant()}_{RandomString(randomPartLength)}";
 
+    public static string FromMask(string mask)
+    {
+        Span<char> result = stackalloc char[mask.Length];
+        Span<byte> randomBytes = stackalloc byte[mask.Length];
+
+        _randomNumberGenerator.GetBytes(randomBytes);
+
+        for (int index = 0; index < mask.Length; index++)
+        {
+            char character = mask[index];
+            byte @byte = randomBytes[index];
+
+            result[index] = character switch
+            {
+                'D' => (char)('0' + (@byte % 10)), // 0-9
+                'A' => (char)('A' + (@byte % 26)), // A-Z
+                'a' => (char)('a' + (@byte % 26)), // a-z
+                'X' => _alphabet[@byte % _alphabet.Length], // Alphanumeric
+                _ => character // Literal
+            };
+        }
+
+        return new string(result);
+    }
+
+    public static Code FromMask(string mask, TimeSpan validity)
+    {
+        Span<char> result = stackalloc char[mask.Length];
+        Span<byte> randomBytes = stackalloc byte[mask.Length];
+
+        _randomNumberGenerator.GetBytes(randomBytes);
+
+        for (int index = 0; index < mask.Length; index++)
+        {
+            char character = mask[index];
+            byte @byte = randomBytes[index];
+
+            result[index] = character switch
+            {
+                'D' => (char)('0' + (@byte % 10)), // 0-9
+                'A' => (char)('A' + (@byte % 26)), // A-Z
+                'a' => (char)('a' + (@byte % 26)), // a-z
+                'X' => _alphabet[@byte % _alphabet.Length], // alphanumeric
+                _ => character
+            };
+        }
+
+        return new Code(new(result), validity);
+    }
+
     private static string RandomString(int length)
     {
         Span<byte> bytes = stackalloc byte[length];
